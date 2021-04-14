@@ -1,5 +1,7 @@
 # Capstone 3 Proposals
 
+To be honest, I really struggled with finding a balance between trying to push myself to do something more interesting/challenging and picking something that I knew was doable. I'm very open to any direction or suggestions you might have.
+
 ## 1. Art Restoration with Autoencoders
 
 I don't know if this falls under the realm of biting off more than I can chew, but I'd like to try training a GAN to restore faded or damaged artwork. I'm open to focusing on whatever works might be most feasable, but at the moment I'm most interested in focusing on ancient Roman mosaics, like the ones found here: https://www.metmuseum.org/blogs/now-at-the-met/features/2010/the-roman-mosaic-from-lod-israel https://www.metmuseum.org/art/collection/search/253565 https://www.metmuseum.org/art/collection/search/254535. (I'd predominantly used the Met API supplemented with any other museum resources I can to collect the data) Again, this may not be within the scope of the capstone, so I'd be open to any suggestions as to how I might narrow the focus or change the art subject matter to something more reasonable.
