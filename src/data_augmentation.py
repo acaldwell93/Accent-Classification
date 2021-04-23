@@ -14,7 +14,7 @@ def get_paths_and_labels(audio_directory_path):
 
     for label, name in enumerate(class_names):
         dir_path = os.path.join(audio_directory_path, name)
-        full_paths = [os.path.join(dir_path, filename) for filename in os.listdir(dir_path)]
+        full_paths = [os.path.join(dir_path, filename) for filename in os.listdir(dir_path) if filename != ".DS_Store"]
         audio_paths += full_paths
         labels += [label] * len(full_paths)
 
@@ -22,20 +22,22 @@ def get_paths_and_labels(audio_directory_path):
 
 def add_random_transformations(audio_path):
     wav, sr = librosa.load(audio_path, 16000)
-    new_wav = wav + 0.002*np.random.normal(0,1,len(wav))
-    new_wav = np.roll(new_wav, np.random.randint(0, len(new_wav)//2))
-#     new_wav = librosa.effects.time_stretch(new_wav,np.random.randint(97,104)*.01)
-    new_wav = librosa.effects.pitch_shift(new_wav, sr, n_steps=np.random.randint(-20, 21)*0.1)
-    final_wav = new_wav.copy()
-    final_wav.resize((432000), refcheck=False)
-    return final_wav, sr
+    new_wav_high, new_wav_low = librosa.effects.pitch_shift(wav, sr, n_steps=1), librosa.effects.pitch_shift(wav, sr, n_steps=-1)
+    # new_wav_high, new_wav_low = np.roll(new_wav_high, np.random.randint(0, len(new_wav_high)//2)), np.roll(new_wav_low, np.random.randint(0, len(new_wav_low)//2))
+    new_wav_high, new_wav_low = librosa.effects.time_stretch(new_wav_high,np.random.randint(90,111)*.01), librosa.effects.time_stretch(new_wav_high,np.random.randint(90,111)*.01)
+    return new_wav_high, new_wav_low, sr
 
 
-audio_paths, labels, label_class_dict = get_paths_and_labels("../data/recordings/train_set")
+
+training_filepath = '../data/recordings/cleaned_set_3/cleaned_train_set'
+# testing_filepath = '../../data/data/recordings/cleaned_set/cleaned_test_set'
+
+audio_paths, labels, label_class_dict = get_paths_and_labels(training_filepath)
 for file_ in audio_paths:
-    if file_.endswith('DS_Store'):
+    if file_.endswith('DS_Store') or file_.endswith('checkpoints'):
         continue
-    for i in range(3):
-        new_wav, sr = add_random_transformations(file_)
-        new_filename = file_[:-4] + f"_{i}.wav"
-        sf.write(new_filename, new_wav, sr)
+    new_wav_high, new_wav_low, sr = add_random_transformations(file_)
+    high_filename = file_[:-4] + "high.wav"
+    low_filename = file_[:-4] + "low.wav"
+    sf.write(high_filename, new_wav_high, sr)
+    sf.write(low_filename, new_wav_low, sr)
