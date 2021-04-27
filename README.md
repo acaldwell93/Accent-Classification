@@ -40,11 +40,13 @@ The bulk of the work for this project was determining the most effective method 
 
 Some model architectures, like WaveNet, are intended to handle raw audio as input. In this approach, we will simply downsample the audio to 16kHz and pass it directly to a neural network with 1-dimensional convolutional layers. 1-D convolutions are a good choice for audio, as the kernels in these layers will only move in one direction (the time dimension). The major drawback of this approach is the sheer size of data in even short raw audio clips.
 
-![](images/wave_spectrogram.png)
+![](images/waveform.png)
 
 ### Approach 2: Spectrogram Analysis with 2-D CNN
 
 Another common approach is to convert the raw audio into spectrograms.  In this instance, the raw audio is converted using a Fast Fourier Transform (FFT), which separates its constituent frequencies and displays the amplitude of those frequencies over time. In doing so, we’ve effectively turned an audio classification task into an image classification task, to which 2-dimensional convolutional layers are very well suited.
+
+![](images/spect.png)
 
 ### Approach 3: MFCCs with 1-D CNN
 
