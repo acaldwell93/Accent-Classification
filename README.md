@@ -53,3 +53,27 @@ Another common approach is to convert the raw audio into spectrograms.  In this 
 Mel Frequency Cepstral Coefficients are a popular method of preprocessing audio data containing human speech. Like spectrograms, it starts with a Fourier transform (of brief time windows) to break the audio into constituent frequencies. Then, the relative powers of these frequencies are mapped onto the mel scale, which effectively translates these frequencies into the human perception of pitch. After taking the log and the inverse DFT, the output becomes a series of vectors of MFCCs. The ultimate value in this preprocessing method is that it creates a series of frequency bands that more accurately represent human perception of sound .
 
 As with our raw audio data, we can pass these feature vectors to a 1-D convolutional neural network. In this case, however, the data will have been significantly reduced to principal components, making training and optimization significantly more efficient.
+
+![](images/mfcc_steps.png)
+
+![](images/mfcc.png)
+
+## Evaluation of Binary Classification Performance
+
+After developing and tuning each of the models separately, I finally trained and tested the best version of each model so their performances could be directly comparedon a binary classification task (American English vs. Spanish).
+
+![](images/2_class_models.png)
+
+As we can see, the 1-D CNN trained on the MFCCs did significantly better.
+
+Final Validation Accuracies:
+ - 1D CNN on MFCCs: 92.5%
+ - 1D CNN on Raw Wav: 76.67%
+ - 2D CNN on Spectrograms: 76.14%
+
+## Evaluation of Multi-Class Classification Performance
+
+Given the solid performance on binary classification, I wanted to expand the scope of the task to better reflect the ultimate goal of the project. I took our best performing model (1D CNN using MFCCs) and trained/tested it on a dataset with a third class, Mandarin. 
+
+![](images/3_class_cnn.png)
+
