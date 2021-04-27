@@ -56,7 +56,7 @@ As with our raw audio data, we can pass these feature vectors to a 1-D convoluti
 
 ![](images/mfcc_steps.png)
 
-![](images/mfcc.png=750X)
+![](images/mfcc.png)
 
 ## Evaluation of Binary Classification Performance
 
