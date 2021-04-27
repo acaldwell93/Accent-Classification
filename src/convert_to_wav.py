@@ -1,8 +1,9 @@
 import os
 from pydub import AudioSegment
 
-current_folder = "../data/recordings/mp3_recordings"
-new_folder = "../data/recordings/wav_recordings"
+home = os.path.expanduser("~")
+current_folder = home + "/Desktop/archive/recordings/recordings"
+new_folder = home + "/Desktop/archive/recordings/wav_recordings"
 
 files = os.listdir(current_folder)
 
