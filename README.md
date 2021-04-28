@@ -84,6 +84,20 @@ Here's a quick look at a confusion matrix and some other performance metrics of 
 
 ![](images/confusion_matrix.png)
 
-![](images/classification_report.png)
+![](images/classification_report2.png)
 
+But what I found particularly helpful was looking directly at some of the audios the model misclassified. What I found was that a significant number of the misclassifications could be categorized into one of two groups: 
+
+ - Non-native English speakers whose pronunciations are relatively 'closer-to-native-English'. For these speakers, the model output a high predicted probability that the speaker was a native English speaker. While these are still incorrect predictions, in terms of ultimate ASR accuracy, as a speaker sounds increasingly more 'native', the cost of these misclassifications becomes increasingly negligible. 
+ - Non-native English speakers for whom the model is confident they are non-native (low predicted probability of native English), but still struggles with determining the speaker's true native accent (top predicted probability between 33%-66%). I suspect this is a symptom of the comparatively high variability within non-native accents vs. native accents coupled with a small sample size for training.
+
+## Further Exploration
+
+### More Data
+
+Given a sample size of only a few hundred audios, the model’s performance would very likely improve given more data. There’s only so much generalization you can achieve with data augmentation
+
+### A/B Test ASR with/without accent classification
+
+The model’s performance on classification suggests further development could be fruitful, but the truest measure of success would be to test the accuracy of an ASR system with accent classification and measure improvement over the baseline.
 
