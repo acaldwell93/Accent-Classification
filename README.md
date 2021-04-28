@@ -77,3 +77,13 @@ Given the solid performance on binary classification, I wanted to expand the sco
 
 ![](images/3_class_cnn.png)
 
+
+The model’s overall validation accuracy drops to around 75%. Further exploration of the metrics might give a better indication on where the model is struggling...
+
+Here's a quick look at a confusion matrix and some other performance metrics of this model:
+
+![](images/confusion_matrix.png)
+
+![](images/classification_report.png)
+
+
