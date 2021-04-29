@@ -1,5 +1,7 @@
 # Accent Classification with Neural Networks
 
+![](images/Speaking-voice-volume.jpg)
+
 ## The Problem
 
 From virtual assistants like Siri, Alexa, and Cortana to automatic closed captioning on YouTube (and soon to be, Zoom), automatic speech recognition (ASR)  systems have become increasingly present in our everyday lives. These services can be welcome conveniences for many users.
